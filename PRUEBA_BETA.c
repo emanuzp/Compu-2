@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+///_________________LISTAS___________________
 
 typedef struct nodol {
         int val;
@@ -15,14 +16,7 @@ typedef struct nodol {
     Lista newList(){
         return NULL;
     }
-///cREAR pilas
 
-
-
-
-
-
-///
     void inserta(int x, Lista *L){
         Nodol *p = malloc(sizeof(Nodol));
         p->val = x;
@@ -56,6 +50,11 @@ typedef struct nodol {
         }
     }
 
+
+///_______________FIN LISTAS___________________
+
+///_______________PILAS____________________
+
 typedef struct nodop {
         int val;
         struct nodo* sig;
@@ -82,18 +81,60 @@ typedef struct nodop {
         *p = r;
     }
 
-    void pop(Pila *p){
+     void pop(Pila *p){
         Nodop *q = *p;
         *p = (*p)->sig;
         free(q);
     }
 
+///__________________FIN PILAS_________________
+
+///_______________PILAS(Version simple)____________________
+
+typedef struct pila{
+        int top;
+        int a[200];
+        }PilaArr;
+        
+        typedef PilaArr * Pila;
+
+        Pila newPila(){
+           Pila p=malloc(sizeof(PilaArr));
+           p->top=0;
+           return p;
+        }
+
+        int esVacia(Pila p){
+          return p->top==0;
+        }
+
+        int esFull(Pila p){
+          return p->top==200;
+        }
+
+        int top(Pila p){
+          return p->a[p->top-1];
+        }
+
+        void push(int x, Pila p){
+            p->a[p->top]=x;
+            p->top=p->top+1;
+        }
+
+        void pop(Pila p){
+           p->top=p->top-1;
+        }
+
+///_______________FIN PILAS(Version simple)____________________
+               
+///___________________PERSONAJE, HABILIDADES, ITEMS, TERRENO_____________________
+
 struct Personaje{
         char Nombre[16];
         int PtSalud;
         int PtEnergia;
-        Pila Inventario;
-        Lista Habilidades;
+        Pila* Inventario;
+        Lista* Habilidades;
         int Dano;
         int Rango;
         int Armadura;
@@ -106,30 +147,33 @@ struct Personaje{
         struct Personaje *PE;
 
 struct Habilidad{
-        char                    Nombre[16];
-        int                     CostoEnergia;
-        int                     CostoAccion;
-        int                     Rango;
-        /*void(*efecto)(Terreno*) efecto;*/
+        char Nombre[16];
+        int CostoEnergia;
+        int CostoAccion;
+        int Rango;
+        void (*efecto)(Terreno*) efecto;
     }Habilidad;
-
-
+        
+        struct Habilidad *Hab;
 
 struct Item{
-        char                    Nombre[16];
-        int                     Costo;
-        int                     Rango;
-     /*   void(*efecto)(Terreno*) efecto;*/
+        char Nombre[16];
+        int Costo;
+        int Rango;
+        void(*efecto)(Terreno*) efecto;
     }Item;
 
-struct Item*items;
-
+        struct Item *items;
 
  struct Terreno{
-     struct  Personaje *PT , Personaje;
-        int         Efecto[10][20];
-        Lista       Item;
-}Terreno;
+        struct Personaje *PT , Personaje;
+        int Efecto[10][20];
+        Lista Item;
+     }Terreno;
+
+///___________________FIN PERSONAJE, HABILIDADES, ITEMS, TERRENO_____________________
+
+///___________Inicialización de variables_____________
 
 int *PosVA;
 int *PosHA;
@@ -144,8 +188,10 @@ int *iniciov;
 int *PosHI;
 int *PosVI;
 
-void IniciarJuego(struct Personajes *PE)
-{
+///_________________INICIALIZACIÓN PERSONAJES__________________
+
+void IniciarJuego(struct Personajes *PE){
+        
     strcpy(Personaje[1].Nombre, "A");
     strcpy(Personaje[2].Nombre, "B");
     strcpy(Personaje[3].Nombre, "C");
@@ -198,11 +244,9 @@ void funcion(Lista *p,struct Item*items){
     inserta (Item.Costo,*p);
     inserta(Item.Rango,*p);
     writeList(p,"PRUEBA");
-
-
-
 }
 
+///_________________UBICACIÓN INICIAL__________________
 
 void UbicacionInicial(int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC, int *PosHD,int *PosVD){
      int i, j;
@@ -236,6 +280,8 @@ void UbicacionInicial(int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int
      return;
 }
 
+///_____________________MOVIMIENTO________________________
+
 void Moverse(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC, int *PosHD,int *PosVD){
     int i, j,x,y;
     int VerifLetra;
@@ -249,7 +295,7 @@ void Moverse(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *PosVB,i
     char C = 67;
     char D = 68;
     char ch =176;
-        printf("Se reduciran sus puntos de accion, en un punto por cada cuadro de disstancia.\nSus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
+        printf("Se reduciran sus puntos de accion, en un punto por cada cuadro de distancia.\nSus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
         printf("Presione un numero para continuar\n");
         scanf("%d",&x);
         /*system("cls");*/
@@ -289,6 +335,7 @@ void Moverse(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *PosVB,i
                         VerifLetra =0;
                     }
                 }while(VerifLetra==0);
+        
     if(Personaje[1].PtAccion > DeterminaMovimieinto(&PE,&PosHA,&PosVA,&PosHB,&PosVB,&PosHC,&PosVC,&PosHD,&PosVD,inicioH,inicioV)){                                              /*     system("cls");*/
       printf("   A B C D E F G H I J K L M N O P Q R S T");
       printf("\n");
@@ -337,6 +384,8 @@ void Moverse(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *PosVB,i
     }
 }
 
+///_________DETERMINA MOVIMIENTO_________________
+
 int DeterminaMovimieinto(struct Personaje *PE, int **PosHA,int **PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC,
                 int *PosHD,int *PosVD,int inicioH, int inicioV){
                        int FinalH = **PosHA;
@@ -348,10 +397,14 @@ int DeterminaMovimieinto(struct Personaje *PE, int **PosHA,int **PosVA,int *PosH
                        return Distancia;
 }
 
+///_______________SUMAR PUNTOS ACCION________________
+
  void SumarPuntosDeAcciion(struct Personajes *PE){
         Personaje[1].PtAccion = Personaje[1].PtAccion + 5;
         printf("%d",Personaje[1].PtAccion);
     }; /*SumarPuntosDeAcciion(&PE);*/
+
+///__________________MENU____________________
 
 void Menu(char name[]){
         system("cls");
@@ -366,11 +419,15 @@ void Menu(char name[]){
         printf("6)Usar item:\n");
         printf("7)Terminar turno:\n");
         printf("8)Inventario:\n");
-        printf("9)Men� sistema:\n");
+        printf("9)Menú sistema:\n");
+        printf("10)Guardar partida:\n");
         scanf("%d",&M);
         Operaciones(&PE,M);
         return;
     }
+
+
+///________________TURNO ACTUAL_______________
 
 void MostrarTurno(struct Personaje *Pe){
     int x;
@@ -380,6 +437,8 @@ void MostrarTurno(struct Personaje *Pe){
     return;
 }
 
+///__________________INICIO TURNO___________________
+
 void IniciaTurno(){
    SumarPuntosDeAcciion(&PE);
    Menu("\nOpciones");
@@ -387,6 +446,8 @@ void IniciaTurno(){
 /*   Operaciones(&PE);*/
 
 }
+
+///______________________OPERACIONES___________________
 
 void Operaciones(struct Personaje *PE, int M){
     int x,i;
@@ -407,9 +468,17 @@ void Operaciones(struct Personaje *PE, int M){
         case 4:
                 UbicacionInicial(&PosHA,&PosVA,&PosHB,&PosVB,&PosHC,&PosVC,&PosHD,&PosVD);
                 Moverse(&PE,&PosHA,&PosVA,&PosHB,&PosVB,&PosHC,&PosVC,&PosHD,&PosVD);
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:          
     }
     return;
 }/* printf("%d",Personaje[1].Dano);*/
+
+///_______________________ATACAR__________________________
 
 void Atacar(struct Personaje *PE){
     int x,i;
@@ -469,6 +538,7 @@ void Atacar(struct Personaje *PE){
         return;
     }
 
+///____________________________RANGO____________________
 
 int PreguntaRango(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC,
                 int *PosHD,int *PosVD,int PosEnemigoH, int PosEnemigoV){
@@ -478,6 +548,8 @@ int PreguntaRango(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *Po
                        DistanciaDelOb = (abs(PosEnemigoH-*PosHA) + abs(PosEnemigoV-*PosVA));
                        return DistanciaDelOb;
 }
+
+///________________________MAIN____________________________
 
 int main(){
   PosVA = 0;
