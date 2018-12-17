@@ -404,6 +404,24 @@ int DeterminaMovimieinto(struct Personaje *PE, int **PosHA,int **PosVA,int *PosH
         printf("%d",Personaje[1].PtAccion);
     }; /*SumarPuntosDeAcciion(&PE);*/
 
+///________________FUNCIONES HABILIDADES_________________
+
+void restaurar(Terreno *t){
+        t->efecto=RESTAURADO;
+}
+
+void incendiar(Terreno *t){
+        t->efecto=INCENDIADO;
+}
+
+void congelar(Terreno *t){
+        t->efecto=CONGELADO;
+}
+
+void electrocutar(Terreno *t){
+        t->efecto=ELECTROCUTADO;
+}
+
 ///__________________MENU____________________
 
 void Menu(char name[]){
