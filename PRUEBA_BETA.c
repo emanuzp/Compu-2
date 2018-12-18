@@ -246,6 +246,164 @@ void funcion(Lista *p,struct Item*items){
     writeList(p,"PRUEBA");
 }
 
+///_________________Prueba de consultar casilla__________________
+
+
+/**
+struct Personaje{
+        char Nombre[16];
+        int PtSalud;
+        int PtEnergia;
+        Pila Inventario;
+        Lista Habilidades;
+        int Dano;
+        int Rango;
+        int Armadura;
+        int Evasion;
+        int Velocidad;
+        int PtAccion;
+        int Jugador;
+        efecto Efecto;
+        }Personaje[5];
+
+        struct Personaje *PE;
+
+struct Habilidad{
+        char                    Nombre[16];
+        int                     CostoEnergia;
+        int                     CostoAccion;
+        int                     Rango;
+        /*void(*efecto)(Terreno*) efecto;
+    }Habilidad;
+
+    struct Habilidad*Hab;
+
+struct Item{
+        char                    Nombre[16];
+        int                     Costo;
+        int                     Rango;
+     /*   void(*efecto)(Terreno*) efecto;
+    }Item;
+
+struct Item*items;
+
+
+ struct terreno{
+        struct  Personaje *PE;
+       // int         Efecto[10][20];
+       // struct Item *items;
+        Lista      * Item;
+        struct Habilidad *Hab;
+        efecto Efecto;
+        int indice;
+}T;
+struct T *TE;*/
+/**
+void consultar(struct T *TE, int x){ ///int x
+    struct T *aa= (struct terreno*)malloc(sizeof(struct terreno));
+    struct terreno personitA;
+    int aci,acj,bci,bcj; int aux;
+     char a = 'A', b='B', c = 'C', d = 'D';
+
+     strcpy(T.PE[1].Nombre[1],PE[1].Nombre[1]);
+     strcpy(T.PE[2].Nombre[1],PE[2].Nombre[1]);
+     strcpy(T.PE[3].Nombre[1],PE[3].Nombre[1]);
+     strcpy(T.PE[4].Nombre[1],PE[4].Nombre[1]);
+     for(aci = 0; aci <= 9; aci++)
+     {
+
+           for( acj= 0; acj <= 19; acj++){
+            if((aci==*PosHA && acj ==*PosVA) || (aci==*PosHB && acj==*PosVB) || (aci==*PosHC && acj==*PosVC) || (aci==*PosHD && acj==*PosVD)){
+               if(aci==*PosHA && acj==*PosVA) int aux1 =true; printf("%c ",A);
+               if(aci==*PosHB && acj==*PosVB) int aux2 = true; printf("%c ",B);
+               if(aci==*PosHC && acj==*PosVC) int aux3 =true; printf("%c ",C);
+               if(aci==*PosHD && acj==*PosVD) int aux4 =true; printf("%c ",D);
+               if(aci == *Positemx && acj == *Positemy) int aux5 =true;  printf("* items");
+               if(aci==posiefectox && acj posiefctoyy) int aux6= true; printf("%c efecto",178);
+
+            }
+            else printf("no hay nada");
+           }
+
+	}
+        if(aux1 || aux2|| aux3 ||aux4){
+            imprimirdatosen_pantalla();
+        }
+
+}*/
+/**
+void dejaritemsuelo(struct Personaje *Pe, struct T*TE, char *x){
+    char a = 'A', b='B', c = 'C', d = 'D';
+    struct T *aa= (struct terreno*)malloc(sizeof(struct terreno));
+
+     if((x=a)){
+         printf("Item dejado por A en el suelo es: ");
+         dejaitemsuelo(&aa,&PE);
+        }
+    if((x=b)){
+         printf("Item dejado por B en el suelo es: ");
+         dejaitemsuelo(&aa,&PE);
+
+     }
+	 
+	 if((x=c)){
+         printf("Item dejado por B en el suelo es: ");
+         dejaitemsuelo(&aa,&PE);
+
+     }
+	 
+	 if((x=d)){
+         printf("Item dejado por B en el suelo es: ");
+         dejaitemsuelo(&aa,&PE);
+
+     }
+}
+________________Dejar item en el suelo____________________
+  void dejaitemsuelo(struct T*TE, struct Personaje*PE){
+      struct T *a = TE; ///de prueba porque aja
+      ///con apuntador
+      struct Personaje *perolitoX;
+      (*perolitoA).Inventario;
+
+      struct terreno *ab;
+      (*ab).Item;
+	  while(!IsEmpty(*perolitoX).Inventario)){
+		if((!IsEmpty(*perolitoX).Inventario)){  ///No correra porque falta crear pila structura
+        if((*ab).Item == NULL){
+
+                popstructura((top(*perolitoX).Inventario));
+                insertaaa((top(*perolitoX).Inventario), &((*ab).Item));
+
+
+
+		}else
+		printf("Ya no puedes dejar nada\n");}
+
+		///sin apuntador. 
+
+		struct terreno LISTA;
+		LISTA.Item;
+
+		Lista personA = newList();
+
+		LISTA.Item = newList();
+
+		}
+	}
+
+ insertaaa(struct Item i, struct *TE t ){
+    Nodola *p= malloc(sizeof(Nodola));
+
+
+ }
+*/
+
+
+
+
+
+
+
 ///_________________UBICACIÓN INICIAL__________________
 
 void UbicacionInicial(int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC, int *PosHD,int *PosVD){
