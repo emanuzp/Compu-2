@@ -303,7 +303,7 @@ void Moverse(struct Personaje *PE, int *PosHA,int *PosVA,int *PosHB,int *PosVB,i
                                         /*Personaje[1].PtAccion = Personaje[1].PtAccion - 1;*/
                                         /*  UbicacionInicial(&PosHA,&PosVA,&PosHB,&PosVB,&PosHC,&PosVC,&PosHD,&PosVD);*/
         do{
-            printf("\Ingrese coordenadas:\n");
+            printf("\nIngrese coordenadas:\n");
             printf("Ingrese Letra: ");
             W = getche();
             VerifLetra = 0;
@@ -424,8 +424,8 @@ void electrocutar(Terreno *t){
 
 ///_______________USO HABILIDAD________________
 
-void UsoHabilidad(struct Habilidad *Hab,struct Personaje *PE,int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC, int *PosHD,int *PosVD){
-        int i,j,x,y;
+void UsoHabilidad(struct Habilidad *Hab,struct Personaje *PE,char name[],int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC, int *PosHD,int *PosVD){
+        int i,j,x,y,M;
         int VerifLetra;
         char letras[21] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','\0'};
         char W;
@@ -436,7 +436,19 @@ void UsoHabilidad(struct Habilidad *Hab,struct Personaje *PE,int *PosHA,int *Pos
         char C = 67;
         char D = 68;
         char ch =176;
+        printf("¿Desea usar alguna habilidad?\n");
+        printf("Selecciona la accion que quieres realizar:\n");
+        printf("%s\n",name);
+        printf("1)Restaurar\n");
+        printf("2)Incendiar\n");
+        printf("3)Congelar\n");
+        printf("4)Electrocutar\n");
+        scanf("%d",&M);
         
+        printf("Se reduciran sus puntos de accion, en un punto por cada cuadro de distancia.\nSus puntos de Accion actuales son: %d\n",Personaje[1].PtAccion);
+        printf("Presione un numero para continuar\n");
+        scanf("%d",&x);
+        printf("\n");
         
 
 ///__________________MENU____________________
