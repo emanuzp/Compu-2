@@ -422,6 +422,23 @@ void electrocutar(Terreno *t){
         t->efecto=ELECTROCUTADO;
 }
 
+///_______________USO HABILIDAD________________
+
+void UsoHabilidad(struct Habilidad *Hab,struct Personaje *PE,int *PosHA,int *PosVA,int *PosHB,int *PosVB,int *PosHC,int *PosVC, int *PosHD,int *PosVD){
+        int i,j,x,y;
+        int VerifLetra;
+        char letras[21] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','\0'};
+        char W;
+        int inicioH = *PosHA;
+        int inicioV = *PosVA;
+        char A = 65;
+        char B = 66;
+        char C = 67;
+        char D = 68;
+        char ch =176;
+        
+        
+
 ///__________________MENU____________________
 
 void Menu(char name[]){
